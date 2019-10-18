@@ -1,26 +1,49 @@
-import React from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  state = {
+    userName: '',
+    firstName: '',
+    lastName: ''
+  }
+
+  onSubmitHandler = (evt) => {
+    evt.preventDefault();
+    console.log(this.state);
+  }
+
+  onChangeHandler = (evt) => {
+    const {name, value} = evt.target
+    this.setState({
+      [name]: value
+    })
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.onSubmitHandler}>
+        <input
+          type="text"
+          name="userName"
+          value={this.state.userName}
+          onChange={this.onChangeHandler} />
+        <input
+          type="text"
+          name="firstName"
+          value={this.state.firstName}
+          onChange={this.onChangeHandler} />
+        <input
+          type="text"
+          name="lastName"
+          value={this.state.lastName}
+          onChange={this.onChangeHandler} />
+        <input type="submit" value="click"/>
+      </form>
+    );
+  }
 }
 
 export default App;
